@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:information_app/controller/auth_controller.dart';
+import 'package:information_app/pages/login.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -52,10 +53,10 @@ class _RegisterPageState extends State<RegisterPage> {
           _roleController.text);
 
       if (user != null) {
-        // Navigator.pushReplacement(
-        //   context,
-        //   MaterialPageRoute(builder: (context) => HomePage()),
-        // );
+         Navigator.pushReplacement(
+           context,
+           MaterialPageRoute(builder: (context) => LoginPage()),
+         );
       } else {
         //ถ้าลงทะเบียนไม่สำเร็จ
         ScaffoldMessenger.of(context).showSnackBar(
