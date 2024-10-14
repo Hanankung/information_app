@@ -149,8 +149,8 @@ class _HomePageState extends State<HomePage> {
               SizedBox(
                 height: 20,
               ),
-              Text('Access Token: \n${userProvider.accessToken}'),
-              Text('Refresh Token: \n${userProvider.refreshToken}'),
+              // Text('Access Token: \n${userProvider.accessToken}'),
+              // Text('Refresh Token: \n${userProvider.refreshToken}'),
               if (informations.isEmpty)
                 Center(
                   child: CircularProgressIndicator(),
