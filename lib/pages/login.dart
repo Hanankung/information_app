@@ -4,6 +4,7 @@ import 'package:information_app/provider/user_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:information_app/pages/register.dart';
 import 'package:information_app/pages/home.dart';
+import '../controller/auth_controller.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

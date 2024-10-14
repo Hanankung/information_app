@@ -168,39 +168,106 @@ class _HomePageState extends State<HomePage> {
                           padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            // children: [
-                            //   Text(information.productName),
-                            //   SizedBox(
-                            //     height: 5,
-                            //   ),
-                            //   Text('TYPE  : ${information.productType}'),
-                            //   SizedBox(
-                            //     height: 5,
-                            //   ),
-                            //   Text('PRICE : ${information.price}'),
-                            //   SizedBox(
-                            //     height: 5,
-                            //   ),
-                            //   Text('UNIT  : ${information.unit}'),
-                            //   SizedBox(
-                            //     height: 10,
-                            //   ),
-                            //   Row(
-                            //     mainAxisAlignment: MainAxisAlignment.end,
-                            //     children: [
-                            //       IconButton(
-                            //         onPressed: () => _toUpdateProduct(information),
-                            //         icon: Icon(Icons.edit_note_rounded),
-                            //         tooltip: 'Edit Product',
-                            //       ),
-                            //       IconButton(
-                            //         onPressed: () => _deleteInformation(information),
-                            //         icon: Icon(Icons.delete_outline),
-                            //         tooltip: 'Delete Product',
-                            //       )
-                            //     ],
-                            //   )
-                            // ],
+                             children: [
+                               Text(information.name),
+                               SizedBox(
+                                 height: 5,
+                               ),
+                               Text('SURNAME  : ${information.surname}'),
+                                SizedBox(
+                                 height: 5,
+                               ),
+                               Text('BITHDAY  : ${information.birthday}'),
+                               SizedBox(
+                                 height: 5,
+                               ),
+                                SizedBox(
+                                 height: 5,
+                               ),
+                               Text('AGE  : ${information.age}'),
+                                SizedBox(
+                                 height: 5,
+                               ),
+                               Text('SEX  : ${information.sex}'),
+                                SizedBox(
+                                 height: 5,
+                               ),
+                               Text('STATUS  : ${information.status}'),
+                                SizedBox(
+                                 height: 5,
+                               ),
+                               Text('BLOODGROUP  : ${information.bloodGroup}'),
+                                SizedBox(
+                                 height: 5,
+                               ),
+                               Text('NATIONALITY  : ${information.nationality}'),
+                                SizedBox(
+                                 height: 5,
+                               ),
+                               Text('ETHNICITY  : ${information.ethnicity}'),
+                                SizedBox(
+                                 height: 5,
+                               ),
+                               Text('RELIGION  : ${information.religion}'),
+                                SizedBox(
+                                 height: 5,
+                               ),
+                               Text('ADDRESS  : ${information.address}'),
+                                SizedBox(
+                                 height: 5,
+                               ),
+                               Text('EMAIL  : ${information.email}'),
+                                SizedBox(
+                                 height: 5,
+                               ),
+                               Text('PHONENUMBER  : ${information.phonenumber}'),
+                                SizedBox(
+                                 height: 5,
+                               ),
+                               Text('SHOPNAME  : ${information.shopname}'),
+                                SizedBox(
+                                 height: 5,
+                               ),
+                               Text('RENEWALPERIOD  : ${information.renewalPeriod}'),
+                                SizedBox(
+                                 height: 5,
+                               ),
+                               Text('DATEINFORMATION  : ${information.dateInformation}'),
+                                SizedBox(
+                                 height: 5,
+                               ),
+                               Text('EXPIRESINFORMATION  : ${information.expiresInformation}'),
+                                SizedBox(
+                                 height: 5,
+                               ),
+                               Text('STARTDATE  : ${information.startdate}'),
+                                SizedBox(
+                                 height: 5,
+                               ),
+                               Text('HISTORYINFORMATION  : ${information.historyInformation}'),
+                                SizedBox(
+                                 height: 5,
+                               ),
+                               Text('LOCATION  : ${information.location}'),
+                               SizedBox(
+                                height: 10,
+                              ),
+                               Row(
+                                 mainAxisAlignment: MainAxisAlignment.end,
+                                 children: [
+                                   IconButton(
+                                     onPressed: () => _toUpdateProduct(information),
+                                     icon: Icon(Icons.edit_note_rounded),
+                                     tooltip: 'Edit Product',
+                                   ),
+                                   IconButton(
+                                     onPressed: () => _deleteInformation(information),
+                                     icon: Icon(Icons.delete_outline),
+                                     tooltip: 'Delete Product',
+                                   )
+                                 ],
+                               )
+                             ],
                           ),
                         ),
                       );

@@ -9,7 +9,7 @@ class AuthSurvice {
   //LoginPage
   Future<UserModel?> login(String username, String password) async {
     final response = await http.post(
-      Uri.parse('$apiURI/api/auth/login'),
+      Uri.parse('$apiURL/api/auth/login'),
       headers: <String, String>{
         'Content-Type': 'application/json',
       },
@@ -29,7 +29,7 @@ class AuthSurvice {
   Future<void> register(
     String name, String surname,String email, String username, String password, String role) async {
       final response = await http.post(
-         Uri.parse("$apiURI/api/auth/register"),
+         Uri.parse("$apiURL/api/auth/register"),
         headers: {
           'Content-Type': 'application/json',
         },
@@ -54,7 +54,7 @@ class AuthSurvice {
       }
 
       final response = await http.post(
-        Uri.parse('$apiURI/api/auth/refresh'),
+        Uri.parse('$apiURL/api/auth/refresh'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'token': refreshToken,

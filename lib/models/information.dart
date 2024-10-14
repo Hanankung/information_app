@@ -30,8 +30,8 @@ class InformationModel {
     String historyInformation;
     String location;
     String id;
-    DateTime createdAt;
-    DateTime updatedAt;
+    // DateTime createdAt;
+    // DateTime updatedAt;
 
     InformationModel({
         required this.name,
@@ -55,8 +55,8 @@ class InformationModel {
         required this.historyInformation,
         required this.location,
         required this.id,
-        required this.createdAt,
-        required this.updatedAt,
+        // required this.createdAt,
+        // required this.updatedAt,
     });
 
     factory InformationModel.fromJson(Map<String, dynamic> json) => InformationModel(
@@ -81,8 +81,8 @@ class InformationModel {
         historyInformation: json["history_information"],
         location: json["location"],
         id: json["_id"],
-        createdAt: DateTime.parse(json["createdAt"]),
-        updatedAt: DateTime.parse(json["updatedAt"]),
+        // createdAt: DateTime.parse(json["createdAt"]),
+        // updatedAt: DateTime.parse(json["updatedAt"]),
     );
 
     Map<String, dynamic> toJson() => {
@@ -107,7 +107,7 @@ class InformationModel {
         "history_information": historyInformation,
         "location": location,
         "_id": id,
-        "createdAt": createdAt.toIso8601String(),
-        "updatedAt": updatedAt.toIso8601String(),
+        // "createdAt": createdAt.toIso8601String(),
+        // "updatedAt": updatedAt.toIso8601String(),
     };
 }
