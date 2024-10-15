@@ -3,7 +3,6 @@ import 'package:information_app/controller/information_controller.dart';
 import 'package:information_app/models/information.dart';
 import 'package:information_app/provider/user_provider.dart';
 import 'package:provider/provider.dart';
-import 'dart:convert';
 
 class AddInformation extends StatefulWidget {
   const AddInformation({super.key});
@@ -61,19 +60,15 @@ class _AddInformationState extends State<AddInformation> {
         startdate: _startdate,
         historyInformation: _historyInformation,
         location: _location,
-        id: ''
+        id: '',
       );
 
       try {
         await _informationSurvice.addInformation(NewInformation, userProvider);
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Information added successfull !')),);
-        // ไปยังหน้า HomePage หลังจากเพิ่มผลิตภัณฑ์สำเร็จ
-        Navigator.of(context).pop(
-            true); // หรือใช้ Navigator.of(context).pushReplacementNamed('/home');
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Information added successfully!')));
+        Navigator.of(context).pop(true);
       } catch (e) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error adding information: $e')),
-        );
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error adding information: $e')));
       }
     }
   }
@@ -88,6 +83,7 @@ class _AddInformationState extends State<AddInformation> {
             Navigator.of(context).pop();
           },
         ),
+        title: Text('Add Information'),
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -97,357 +93,97 @@ class _AddInformationState extends State<AddInformation> {
           ),
         ),
         child: Padding(
-          padding: EdgeInsets.fromLTRB(16, 16, 16, 16),
+          padding: EdgeInsets.all(16),
           child: SingleChildScrollView(
             child: Card(
+              elevation: 4,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
               child: Padding(
                 padding: EdgeInsets.all(20),
                 child: Form(
-                    key: _formkey,
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: 15,
+                  key: _formkey,
+                  child: Column(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: const Color.fromARGB(255, 243, 241, 241), width: 2),
+                          borderRadius: BorderRadius.circular(12),
                         ),
-                        Text(
+                        padding: EdgeInsets.all(10),
+                        child: Text(
                           'ADD INFORMATION',
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.w600),
+                          style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.blue),
                         ),
-                        SizedBox(
-                          height: 40,
+                      ),
+                      SizedBox(height: 40),
+                      _buildTextFormField('NAME', (value) => _name = value),
+                      _buildTextFormField('SURNAME', (value) => _surname = value),
+                      _buildTextFormField('BIRTHDAY', (value) => _birthday = value),
+                      _buildTextFormField('AGE', (value) => _age = value),
+                      _buildTextFormField('SEX', (value) => _sex = value),
+                      _buildTextFormField('STATUS', (value) => _status = value),
+                      _buildTextFormField('BLOODGROUP', (value) => _bloodGroup = value),
+                      _buildTextFormField('NATIONALITY', (value) => _nationality = value),
+                      _buildTextFormField('ETHNICITY', (value) => _ethnicity = value),
+                      _buildTextFormField('RELIGION', (value) => _religion = value),
+                      _buildTextFormField('ADDRESS', (value) => _address = value),
+                      _buildTextFormField('EMAIL', (value) => _email = value),
+                      _buildTextFormField('PHONENUMBER', (value) => _phonenumber = value),
+                      _buildTextFormField('SHOPNAME', (value) => _shopname = value),
+                      _buildTextFormField('RENEWAL PERIOD', (value) => _renewalPeriod = value),
+                      _buildTextFormField('Date Information', (value) => _dateInformation = value),
+                      _buildTextFormField('Expires Information', (value) => _expiresInformation = value),
+                      _buildTextFormField('Status Date', (value) => _startdate = value),
+                      _buildTextFormField('History Information', (value) => _historyInformation = value),
+                      _buildTextFormField('LOCATION', (value) => _location = value),
+                      SizedBox(height: 20),
+                      ElevatedButton(
+                        onPressed: _AddInformation,
+                        style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
+                          backgroundColor: Colors.blue, // สีพื้นหลังของปุ่ม
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12), // มุมของปุ่ม
+                          ),
                         ),
-                        TextFormField(
-                          decoration:
-                              InputDecoration(labelText: 'NAME'),
-                          onChanged: (value) {
-                            _name = value;
-                          },
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter a information name';
-                            }
-                            return null;
-                          },
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        TextFormField(
-                          decoration:
-                              InputDecoration(labelText: 'SURNAME'),
-                          onChanged: (value) {
-                            _surname = value;
-                          },
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter a information surname';
-                            }
-                            return null;
-                          },
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        TextFormField(
-                          decoration:
-                              InputDecoration(labelText: 'BIRTHDAY'),
-                          onChanged: (value) {
-                            _birthday = value;
-                          },
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter a information birthday';
-                            }
-                            return null;
-                          },
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        TextFormField(
-                          decoration:
-                              InputDecoration(labelText: 'AGE'),
-                          onChanged: (value) {
-                            _age = value;
-                          },
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter a information age';
-                            }
-                            return null;
-                          },
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        TextFormField(
-                          decoration:
-                              InputDecoration(labelText: 'SEX'),
-                          onChanged: (value) {
-                            _sex = value;
-                          },
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter a information sex';
-                            }
-                            return null;
-                          },
-                        ),SizedBox(
-                          height: 20,
-                        ),
-                        TextFormField(
-                          decoration:
-                              InputDecoration(labelText: 'STATUS'),
-                          onChanged: (value) {
-                            _status = value;
-                          },
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter a information status';
-                            }
-                            return null;
-                          },
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        TextFormField(
-                          decoration:
-                              InputDecoration(labelText: 'BLOODGROUP'),
-                          onChanged: (value) {
-                            _bloodGroup = value;
-                          },
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter a information bloodGoup';
-                            }
-                            return null;
-                          },
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        TextFormField(
-                          decoration:
-                              InputDecoration(labelText: 'NATIONALITY'),
-                          onChanged: (value) {
-                            _nationality = value;
-                          },
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter a information nationality';
-                            }
-                            return null;
-                          },
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        TextFormField(
-                          decoration:
-                              InputDecoration(labelText: 'ETHNICITY'),
-                          onChanged: (value) {
-                            _ethnicity = value;
-                          },
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter a information ethnicity';
-                            }
-                            return null;
-                          },
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        TextFormField(
-                          decoration:
-                              InputDecoration(labelText: 'RELIGION'),
-                          onChanged: (value) {
-                            _religion = value;
-                          },
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter a information religion';
-                            }
-                            return null;
-                          },
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        TextFormField(
-                          decoration:
-                              InputDecoration(labelText: 'ADDRESS'),
-                          onChanged: (value) {
-                            _address = value;
-                          },
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter a information address';
-                            }
-                            return null;
-                          },
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        TextFormField(
-                          decoration:
-                              InputDecoration(labelText: 'EMAIL'),
-                          onChanged: (value) {
-                            _email = value;
-                          },
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter a information email';
-                            }
-                            return null;
-                          },
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        TextFormField(
-                          decoration:
-                              InputDecoration(labelText: 'PHONENUMBER'),
-                          onChanged: (value) {
-                            _phonenumber = value;
-                          },
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter a information phonenumber';
-                            }
-                            return null;
-                          },
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        TextFormField(
-                          decoration:
-                              InputDecoration(labelText: 'SHOPNAME'),
-                          onChanged: (value) {
-                            _shopname = value;
-                          },
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter a information shopname';
-                            }
-                            return null;
-                          },
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        TextFormField(
-                          decoration:
-                              InputDecoration(labelText: 'RENEWAL PERIOD'),
-                          onChanged: (value) {
-                            _renewalPeriod = value;
-                          },
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter a information renowal period';
-                            }
-                            return null;
-                          },
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        TextFormField(
-                          decoration:
-                              InputDecoration(labelText: 'Date Information'),
-                          onChanged: (value) {
-                            _dateInformation = value;
-                          },
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter a information date information';
-                            }
-                            return null;
-                          },
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        TextFormField(
-                          decoration:
-                              InputDecoration(labelText: 'Expires Information'),
-                          onChanged: (value) {
-                            _expiresInformation = value;
-                          },
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter a information Expires';
-                            }
-                            return null;
-                          },
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        TextFormField(
-                          decoration:
-                              InputDecoration(labelText: 'Status Date'),
-                          onChanged: (value) {
-                            _startdate = value;
-                          },
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter a information Status Date';
-                            }
-                            return null;
-                          },
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        TextFormField(
-                          decoration:
-                              InputDecoration(labelText: 'History Information'),
-                          onChanged: (value) {
-                            _historyInformation = value;
-                          },
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter a information History';
-                            }
-                            return null;
-                          },
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        TextFormField(
-                          decoration:
-                              InputDecoration(labelText: 'LOCATION'),
-                          onChanged: (value) {
-                            _location = value;
-                          },
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter a information Location';
-                            }
-                            return null;
-                          },
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        SizedBox(height: 80),
-                        ElevatedButton(
-                          onPressed: _AddInformation,
-                          child: Text('SUCCESSFULLY'),
-                        ),
-                      ],
-                    )),
+                        child: Text('SUCCESSFULLY', style: TextStyle(fontSize: 18,color: Colors.white)),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildTextFormField(String label, Function(String) onChanged) {
+    return Column(
+      children: [
+        TextFormField(
+          decoration: InputDecoration(
+            labelText: label,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide(color: Colors.blue),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide(color: Colors.blue, width: 2),
+            ),
+          ),
+          onChanged: onChanged,
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Please enter a information $label';
+            }
+            return null;
+          },
+        ),
+        SizedBox(height: 20),
+      ],
     );
   }
 }

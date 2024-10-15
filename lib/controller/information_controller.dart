@@ -22,7 +22,7 @@ class informationSurvice {
   }
 
   Future<List<InformationModel>> fetchInformations(
-      UserProvider userProvider) async {
+      UserProvider userProvider, {String? searchQuery}) async {
     final response =
         await http.get(Uri.parse('$apiURL/api/information'), headers: {
       'Content-Type': 'application/json',
